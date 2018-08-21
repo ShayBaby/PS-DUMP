@@ -1,5 +1,5 @@
 # PS-DUMP
-Poweshell scripts dump.
+Powershell scripts dump.
 
 rec-twitch:
 
