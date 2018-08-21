@@ -9,33 +9,24 @@ $EndTime = Read-Host "Enter a local time to end (ex: 12:05 PM): "
 
 Measure-Command {
 
-[Diagnostics.Process]::Start("streamlink.exe","https://www.twitch.tv/$Target best -o $RecTarget.mp4")
+    [Diagnostics.Process]::Start("streamlink.exe","https://www.twitch.tv/$Target best -o $RecTarget.mp4")
 
-$ps = new-object System.Diagnostics.Process
-$ps.StartInfo.Filename = "streamlink.exe"
-$ps.StartInfo.Arguments = " /all"
-$ps.StartInfo.RedirectStandardOutput = $True
-$ps.StartInfo.UseShellExecute = $true
+    $ps = new-object System.Diagnostics.Process
+    $ps.StartInfo.Filename = "streamlink.exe"
+    $ps.StartInfo.Arguments = " /all"
+    $ps.StartInfo.RedirectStandardOutput = $True
+    $ps.StartInfo.UseShellExecute = $true
 
 Sleep -Seconds (New-TimeSpan -End "$EndTime").TotalSeconds
 
-# HALT Python and Streamlink
+    # HALT Python and Streamlink
 
-$pyid = (Get-Process python).id # Get and store Python's proc ID
-$steid = (Get-Process streamlink).id # Get and store streamlink's proc ID
+    $pyid = (Get-Process python).id # Get and store Python's proc ID
+    $steid = (Get-Process streamlink).id # Get and store streamlink's proc ID
 
-Stop-Process -Id $steid # HALT streamlink
-Stop-Process -Id $pyid # HALT Python
-Wait-Process -Id $pyid # Wait for clean exit()
-
+    Stop-Process -Id $steid # HALT streamlink
+    Stop-Process -Id $pyid # HALT Python
+    Wait-Process -Id $pyid # Wait for clean exit()
 }
 
-Write-Host "Process stopped. Stream captured. Recording should be located at: $RecTarget.mp4" # Return(1) (yes I'm a C hacker) message.
-
-# ~/.Trash - Didn't need any of the below lines, so just dropped them here.
-
-#$LogTarget = Read-Host "Enter name for log file: "
-#$args = "https://www.twitch.tv/$Target best -o $RecTarget.mp4"
-#$Proc = streamlink -LoadUserProfile -ArgumentList "https://www.twitch.tv/$Target best -o $RecTarget.mp4" -PassThru
-# Wait-Process -Id $steid # Wait for clean exit()
-#iex $Proc
+Write-Host "Process stopped. Stream captured. Recording should be located at: $RecTarget.mp4" # Return(1) message.
