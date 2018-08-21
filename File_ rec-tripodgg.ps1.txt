@@ -1,0 +1,1 @@
+File: rec-tripodgg.ps1ONLY BUG RETROBECKY ABOUT THIS SCRIPT. THIS IS NOT ENDORSED OR SPONSORED BY THESTREAMER.From file:# This has been modified specifically for TripodGG's community. No other uses allowed.# Will only capture his stream unless modified. I don't do support but join his discord# https://discord.gg/NWJS2tg# And bug RetroBecky about it.EOF:
